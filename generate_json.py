@@ -3,7 +3,7 @@ import json
 def main():
     # Sample data to be written to JSON file
     data = {
-        "name": "Johnny Doe",
+        "name": "James Doe",
         "age": 30,
         "city": "California"
     }
