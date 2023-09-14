@@ -318,3 +318,4 @@ with open("data.json", "w") as f:
 
 end_time = time.time()
 (end_time - start_time)/60
+
