@@ -311,11 +311,9 @@ records = rw_df.to_dict(orient="records")
 # Create new dictionary with desired structure
 data = {"data": records}
 
-
 # Dump dictionary to json file - only if we are working on that separate exported file
 with open("data.json", "w") as f:
     json.dump(data, f, default=str)
 
 end_time = time.time()
 (end_time - start_time)/60
-

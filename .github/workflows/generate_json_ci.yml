@@ -1,9 +1,8 @@
 name: Run generate_json.py and Commit data.json
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+      - cron: '40 2 * * 5' 
 
 jobs:
   build:
