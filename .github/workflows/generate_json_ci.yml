@@ -2,7 +2,7 @@ name: Run generate_json.py and Commit data.json
 
 on:
   schedule:
-      - cron: '35 3 * * 5' 
+      - cron: '42 3 * * 5' 
 
 jobs:
   build:
