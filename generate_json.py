@@ -28,6 +28,8 @@ import datetime
 from datetime import datetime
 import time
 import ast
+from requests.sessions import Session
+
 
 # Flask-Related Code
 # from flask import Flask, render_template, jsonify, render_template_string, request, flash
@@ -81,8 +83,16 @@ api_urls = [
     for year in years
 ]
 
-# Now load the APIs here. We have to build multiple because the limit for this API is 1,000.
-reliefweb_raws = [requests.get(api_url) for api_url in api_urls]
+# Now load the APIs here. We have to build multiple because the limit for this API is 1,000. Include the session as a retry mechanism to ensure that we don't get blocked.
+session = Session()
+reliefweb_raws = []
+for api_url in api_urls:
+    try:
+        response = requests.get(api_url, timeout=180)
+        reliefweb_raws.append(response)
+    except requests.exceptions.Timeout:
+        print(f"Timeout occurred for URL: {api_url}")
+
 
 # Ensure that all requests were successful
 assert all(reliefweb_raw.status_code == 200 for reliefweb_raw in reliefweb_raws)
